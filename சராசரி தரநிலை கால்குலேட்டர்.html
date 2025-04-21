@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Marks Average Calculator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      padding: 20px;
+      max-width: 500px;
+      margin: auto;
+      background: #f9f9f9;
+      color: #333;
+    }
+
+    h2 {
+      text-align: center;
+      color: #2c3e50;
+      margin-bottom: 20px;
+      font-size: 20px;
+      border-bottom: 2px solid #4CAF50;
+      padding-bottom: 5px;
+    }
+
+    h3 {
+      text-align: center;
+      color: #2c3e50;
+      margin-bottom: 20px;
+      font-size: 16px;
+      border-bottom: 2px solid #4CAF50;
+      padding-bottom: 5px;
+    }
+
+    label, input {
+      display: block;
+      width: 100%;
+      margin-bottom: 15px;
+    }
+
+    input[type="number"] {
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      padding: 12px 20px;
+      font-size: 16px;
+      width: 100%;
+      margin-bottom: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    #calculateBtn {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    #calculateBtn:hover {
+      background-color: #45a049;
+    }
+
+    #clearBtn {
+      background-color: #f44336;
+      color: white;
+    }
+
+    #clearBtn:hover {
+      background-color: #d73833;
+    }
+
+    h1#output {
+      background-color: #fff9c4;
+      color: #333;
+      padding: 15px;
+      border-radius: 10px;
+      text-align: center;
+      font-size: 20px;
+      margin-top: 25px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .whatsapp-link, .email-link {
+      display: inline-block;
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+      margin-right: 10px;
+      color: white;
+    }
+
+    .whatsapp-link {
+      background-color: #25D366;
+    }
+
+    .whatsapp-link:hover {
+      background-color: #1ebe57;
+    }
+
+    .email-link {
+      background-color: #2196F3;
+    }
+
+    .email-link:hover {
+      background-color: #0b7dda;
+    }
+  </style>
+</head>
+
+<body>
+  <h2>Grade Calculator for Average Marks</h2>
+  <h3>Enter Marks for Each Term</h3>
+  <h1 id="output"></h1>
+
+  <label for="term1">Term 1:</label>
+  <input type="number" id="term1" placeholder="Enter Term 1 Marks">
+
+  <label for="term2">Term 2:</label>
+  <input type="number" id="term2" placeholder="Enter Term 2 Marks">
+
+  <label for="term3">Term 3:</label>
+  <input type="number" id="term3" placeholder="Enter Term 3 Marks">
+
+  <button id="calculateBtn" onclick="calculateAverage()">Calculate Average</button>
+  <button id="clearBtn" onclick="clearFields()">Clear</button>
+
+  <a href="https://wa.me/+919788781976" class="whatsapp-link" target="_blank">💬 Chat on WhatsApp</a>
+  <a href="mailto:selvakumarkurichi@gmail.com" class="email-link">📧 Contact Me</a>
+
+  <script>
+    function calculateAverage() {
+      const term1 = parseFloat(document.getElementById("term1").value);
+      const term2 = parseFloat(document.getElementById("term2").value);
+      const term3 = parseFloat(document.getElementById("term3").value);
+
+      if (isNaN(term1) || isNaN(term2) || isNaN(term3)) {
+        document.getElementById("output").innerText = "Please enter all three marks.";
+        return;
+      }
+
+      if (term1 > 100 || term2 > 100 || term3 > 100) {
+        alert("தயவு செய்து மதிப்பெண் 100 க்குள் இருக்க வேண்டும்.");
+        return;
+      }
+
+      const average = (term1 + term2 + term3) / 3;
+      const average1 = parseFloat(average.toFixed(0));
+      const grade = getGrade(average1);
+      const grade1 = getGrade1(average1);
+          
+
+      document.getElementById("output").innerText =
+        "Average Marks: " + average1 + " \n Average Grade \n for Primary: " + grade+ " \n Upper Primary: " + grade1;
+    }
+
+    function getGrade(avg) {
+      if (avg >= 80 && avg <= 100) return "A";
+      else if (avg >= 60) return "B";
+      else if (avg >= 40) return "C";
+      else if (avg >= 20) return "D";
+      else return "E";
+    }
+	
+    function getGrade1(avg) {
+      if (avg >= 90 && avg <= 100) return "A1";
+      else if (avg >= 80) return "A2";
+      else if (avg > 70) return "B1";
+      else if (avg > 60) return "B2";
+      else if (avg > 50) return "C1";
+      else if (avg > 40) return "C2";
+      else if (avg >= 33 && avg <= 40) return "D";
+      else if (avg >= 21 && avg <= 32) return "E1";
+      else return "E2";
+    }
+
+    function clearFields() {
+      document.getElementById("term1").value = "";
+      document.getElementById("term2").value = "";
+      document.getElementById("term3").value = "";
+      document.getElementById("output").innerText = "";
+    }
+  </script>
+</body>
+</html>
